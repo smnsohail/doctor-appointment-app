@@ -1,0 +1,96 @@
+<div class="home-container">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="hero-content">
+          <h1>Find & Book Doctor Appointments</h1>
+          <p>Search for qualified doctors near you and book appointments instantly</p>
+          
+          <!-- Search Filters -->
+          <div class="search-filters">
+            <mat-form-field appearance="fill">
+              <mat-label>Specialization</mat-label>
+              <mat-select [(ngModel)]="selectedSpecialization" name="specialization">
+                <mat-option value="">All Specializations</mat-option>
+                <mat-option value="Cardiology">Cardiology</mat-option>
+                <mat-option value="Neurology">Neurology</mat-option>
+                <mat-option value="Orthopedics">Orthopedics</mat-option>
+                <mat-option value="Pediatrics">Pediatrics</mat-option>
+                <mat-option value="Dermatology">Dermatology</mat-option>
+                <mat-option value="General Medicine">General Medicine</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Search Radius (km)</mat-label>
+              <mat-select [(ngModel)]="searchRadius" name="radius">
+                <mat-option value="5">5 km</mat-option>
+                <mat-option value="10">10 km</mat-option>
+                <mat-option value="25">25 km</mat-option>
+                <mat-option value="50">50 km</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="searchDoctors()">
+              Search Doctors
+            </button>
+            
+            <button mat-raised-button color="accent" (click)="findNearbyDoctors()">
+              Find Nearby
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results-section">
+        <div class="results-header">
+          <h2>Available Doctors</h2>
+          <p *ngIf="doctors.length > 0">Found {{doctors.length}} doctors</p>
+        </div>
+
+        <!-- Doctor Cards -->
+        <div class="doctors-grid">
+          <mat-card *ngFor="let doctor of doctors" class="doctor-card">
+            <mat-card-header>
+              <mat-card-title>Dr. {{doctor.name}}</mat-card-title>
+              <mat-card-subtitle>{{doctor.specialization}}</mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content>
+              <p><strong>Qualifications:</strong> {{doctor.qualifications}}</p>
+              <p><strong>Clinic:</strong> {{doctor.clinicName}}</p>
+              <p><strong>Address:</strong> {{doctor.address}}</p>
+              <p *ngIf="doctor.distance"><strong>Distance:</strong> {{doctor.distance}} km</p>
+            </mat-card-content>
+            
+            <mat-card-actions>
+              <button mat-button color="primary" (click)="viewOnMap(doctor)">View on Map</button>
+              <button mat-raised-button color="accent" *ngIf="isLoggedIn()" (click)="bookAppointment(doctor)">
+                Book Appointment
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section" *ngIf="showMap">
+          <h3>Doctor Locations</h3>
+          <google-map [height]="'400px'" [width]="'100%'" [center]="mapCenter" [zoom]="12">
+            <map-marker 
+              *ngFor="let doctor of doctors" 
+              [position]="doctor.position" 
+              [title]="'Dr. ' + doctor.name"
+              (mapClick)="openInfoWindow(doctor)">
+            </map-marker>
+            
+            <!-- User location marker -->
+            <map-marker 
+              *ngIf="userLocation" 
+              [position]="userLocation" 
+              [options]="userMarkerOptions"
+              title="Your Location">
+            </map-marker>
+          </google-map>
+        </div>
+      </div>
+    </div>

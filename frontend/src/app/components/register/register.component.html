@@ -1,0 +1,67 @@
+ <div class="register-container">
+      <div class="register-form">
+        <h2>Register</h2>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>I am a</mat-label>
+          <mat-select [(ngModel)]="userType" name="userType">
+            <mat-option value="patient">Patient</mat-option>
+            <mat-option value="doctor">Doctor</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Full Name</mat-label>
+          <input matInput [(ngModel)]="name" name="name" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="email" name="email" type="email" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput [(ngModel)]="password" name="password" required />
+        </mat-form-field>
+
+        <!-- Doctor specific fields -->
+        <div *ngIf="userType === 'doctor'">
+          <mat-form-field appearance="fill">
+            <mat-label>Specialization</mat-label>
+            <mat-select [(ngModel)]="specialization" name="specialization">
+              <mat-option value="Cardiology">Cardiology</mat-option>
+              <mat-option value="Neurology">Neurology</mat-option>
+              <mat-option value="Orthopedics">Orthopedics</mat-option>
+              <mat-option value="Pediatrics">Pediatrics</mat-option>
+              <mat-option value="Dermatology">Dermatology</mat-option>
+              <mat-option value="General Medicine">General Medicine</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Qualifications</mat-label>
+            <input matInput [(ngModel)]="qualifications" name="qualifications" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Clinic/Hospital Name</mat-label>
+            <input matInput [(ngModel)]="clinicName" name="clinicName" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <textarea matInput [(ngModel)]="address" name="address" rows="3"></textarea>
+          </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="register()" [disabled]="loading">
+          {{loading ? 'Registering...' : 'Register'}}
+        </button>
+        
+        <p class="login-link">
+          Already have an account? 
+          <button mat-button color="accent" (click)="goToLogin()">Login here</button>
+        </p>
+      </div>
+    </div>

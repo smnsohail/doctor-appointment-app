@@ -1,0 +1,129 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.register-form {
+  background: #fff;
+  padding: 40px 32px 32px 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 34px rgba(30, 64, 175, 0.1);
+  width: 100%;
+  max-width: 490px;
+  max-height: 92vh;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  /* Preserve left border-radius regardless of scrollbar */
+  border-top-left-radius: 16px !important;
+  border-bottom-left-radius: 16px !important;
+  /* Ensure consistent border-radius on all corners */
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  /* Add slight padding adjustment to prevent content from touching scrollbar */
+  padding-right: calc(32px + env(scrollbar-width, 0px));
+}
+
+/* Alternative approach: Create a wrapper to isolate scrollbar from border-radius */
+.register-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Ensure scrollbar doesn't affect left border-radius on webkit browsers */
+.register-form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.register-form::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 0 16px 16px 0;
+}
+
+.register-form::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.register-form::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.register-form mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.register-form button[mat-raised-button] {
+  width: 100%;
+  height: 45px; /* Changed from 10rem to match login button */
+  margin-top: 20px;
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #42a5f5 0%, #7e57c2 80%);
+  color: #fff;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 8px #90caf9a1;
+  transition: background 0.3s;
+}
+
+.register-form button[mat-raised-button]:hover {
+  background: linear-gradient(90deg, #1976d2 10%, #5e35b1 90%);
+}
+
+.login-link {
+  text-align: center;
+  color: #666;
+  margin-top: 0px;
+  font-size: 0.97rem;
+}
+
+@media (max-width: 600px) {
+  .register-form {
+    padding: 25px 8px 15px 8px;
+    max-width: 98vw;
+    /* Maintain border-radius on mobile */
+    border-top-left-radius: 16px !important;
+    border-bottom-left-radius: 16px !important;
+  }
+  .register-form h2 {
+    font-size: 1.4rem;
+  }
+}
+
+::-webkit-input-placeholder {
+  color: #aaa;
+}
+::-moz-placeholder {
+  color: #aaa;
+}
+:-ms-input-placeholder {
+  color: #aaa;
+}
+::placeholder {
+  color: #aaa;
+}
