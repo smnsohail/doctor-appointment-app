@@ -130,6 +130,15 @@ ng build --configuration production
 ```
 - Host on Netlify, Vercel, Firebase Hosting, or similar.
 
+## Some Images
+<img width="1918" height="848" alt="Screenshot 2025-07-28 180707" src="https://github.com/user-attachments/assets/e81a64eb-096e-43f7-abdd-9ef9d8f59f95" />
+<img width="1914" height="828" alt="Screenshot 2025-07-28 180657" src="https://github.com/user-attachments/assets/ca61abcc-bb0e-4990-af6e-6cb240b487d4" />
+
+<img width="1899" height="799" alt="Screenshot 2025-07-28 180250" src="https://github.com/user-attachments/assets/f44c7f2f-a4ef-4b32-9974-9d4c7c47a7ec" />
+<img width="1894" height="879" alt="Screenshot 2025-07-28 180300" src="https://github.com/user-attachments/assets/7012c237-37bb-4a6f-a78d-04ec2b306572" />
+<img width="1895" height="818" alt="Screenshot 2025-07-28 180235" src="https://github.com/user-attachments/assets/903f1e01-24c1-4483-8abe-b0a083982dac" />
+/>
+
 ## Troubleshooting Tips
 
 - Ensure CORS is enabled in backend to allow frontend requests.  
